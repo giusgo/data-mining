@@ -1,13 +1,16 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Navbar from "@/components/sections/Navbar.astro";
+import Footer from "@/components/sections/Footer.astro";
 import "@/styles/globals.css";
 ---
 
 <Layout title="Data Mining">
-    <main>
-        <Navbar />
-        <div class="container max-w-4xl border border-black dark:border-white">
-        </div>
-    </main>
+    <Navbar />
+    <div class="container max-w-4xl border-b border-black dark:border-white">
+    </div>
+    <main class="flex-1"></main>
+    <div class="container max-w-4xl border-b border-black dark:border-white">
+    </div>
+    <Footer />
 </Layout>
