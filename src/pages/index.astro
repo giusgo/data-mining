@@ -3,7 +3,9 @@ import Layout from "../layouts/Layout.astro";
 import Navbar from "@/components/sections/Navbar.astro";
 import Footer from "@/components/sections/Footer.astro";
 import Header from "@/components/sections/Header.astro";
+// Sections
 import Team from "@/components/sections/Team/Team.astro";
+import Dataset from "@/components/sections/Dataset/Dataset.astro";
 import "@/styles/globals.css";
 ---
 
@@ -18,6 +20,11 @@ import "@/styles/globals.css";
         >
         </div>
         <Team />
+        <div
+            class="container max-w-5xl border-b border-black dark:border-white"
+        >
+        </div>
+        <Dataset />
     </main>
     <div class="container max-w-5xl border-b border-black dark:border-white">
     </div>
