@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Navbar from "@/components/sections/Navbar.astro";
 import Footer from "@/components/sections/Footer.astro";
+import Header from "@/components/sections/Header.astro";
 import "@/styles/globals.css";
 ---
 
@@ -9,7 +10,13 @@ import "@/styles/globals.css";
     <Navbar />
     <div class="container max-w-5xl border-b border-black dark:border-white">
     </div>
-    <main class="flex-1"></main>
+    <main class="flex-1">
+        <Header />
+        <div
+            class="container max-w-5xl border-b border-black dark:border-white"
+        >
+        </div>
+    </main>
     <div class="container max-w-5xl border-b border-black dark:border-white">
     </div>
     <Footer />
