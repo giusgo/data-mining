@@ -1,9 +1,11 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { cn } from "@/lib/utils";
 
 interface TeamMemberProps {
   src: string;
   name: string;
   github: string;
+  className?: string;
 }
 
 function getInitials(name: string) {
@@ -12,18 +14,22 @@ function getInitials(name: string) {
   return initials;
 }
 
-export function TeamMember({ src, name, github }: TeamMemberProps) {
+export function TeamMember({ src, name, github, className }: TeamMemberProps) {
   return (
-    <div className="flex gap-10 place-items-center even:flex-row-reverse">
+    <div className={cn(["flex gap-10 place-items-center", className])}>
       <Avatar className="w-40 h-40 select-none">
-        <AvatarImage src={src} alt={name} />
+        <AvatarImage
+          src={src}
+          alt={name}
+          className="object-cover w-full h-full"
+        />
         <AvatarFallback>{getInitials(name)}</AvatarFallback>
       </Avatar>
       <div>
         <p>{name}</p>
         <p className="italic">Universidad del Norte, Colombia</p>
       </div>
-      <a href={github} target="_blank">
+      <a href={github} target="_blank" rel="noopener noreferrer">
         <svg
           className="group h-7 w-auto ml-2"
           role="img"
