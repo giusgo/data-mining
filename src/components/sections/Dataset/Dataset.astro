@@ -28,16 +28,189 @@ import {
     <div class="mt-8 mb-3">
         <h3 class="font-bold text-2xl">Description</h3>
         <p>
-            This dataset, sourced from <a
-                href="https://www.kaggle.com/datasets/sooyoungher/smoking-drinking-dataset"
-                class="underline font-bold"
-                target="_blank">Kaggle</a
-            >, has been obtained from the National Health Insurance Service in
-            Korea, with all personal and sensitive information removed. The
-            dataset aims to facilitate the classification of individuals as
-            smokers or drinkers.
+            This dataset, sourced from Kaggle, has been obtained from the
+            National Health Insurance Service in Korea, with all personal and
+            sensitive information removed. The dataset aims to facilitate the
+            classification of individuals as smokers or drinkers. Here's a small
+            sample:
         </p>
-        
+        <!-- DATA TABLE -->
+        <Table className="mt-5">
+            <TableHeader>
+                <TableRow>
+                    <TableHead className="w-[50px]">Index</TableHead>
+                    <TableHead>Sex</TableHead>
+                    <TableHead>Age</TableHead>
+                    <TableHead>Height</TableHead>
+                    <TableHead>Weight</TableHead>
+                    <TableHead>Waistline</TableHead>
+                    <TableHead>Sight Left</TableHead>
+                    <TableHead>Sight Right</TableHead>
+                    <TableHead>Hear Left</TableHead>
+                    <TableHead>Hear Right</TableHead>
+                    <TableHead>SBP</TableHead>
+                    <TableHead>DBP</TableHead>
+                    <TableHead>BLDS</TableHead>
+                    <TableHead>Total Cholesterol</TableHead>
+                    <TableHead>HDL Cholesterol</TableHead>
+                    <TableHead>LDL Cholesterol</TableHead>
+                    <TableHead>Triglyceride</TableHead>
+                    <TableHead>Hemoglobin</TableHead>
+                    <TableHead>Urine Protein</TableHead>
+                    <TableHead>Serum Creatinine</TableHead>
+                    <TableHead>SGOT AST</TableHead>
+                    <TableHead>SGOT ALT</TableHead>
+                    <TableHead>Gamma GTP</TableHead>
+                    <TableHead>Smoking Status</TableHead>
+                    <TableHead>Drinking Status</TableHead>
+                </TableRow>
+            </TableHeader>
+            <TableBody>
+                <TableRow>
+                    <TableCell className="font-medium">0</TableCell>
+                    <TableCell>Male</TableCell>
+                    <TableCell>35</TableCell>
+                    <TableCell>170</TableCell>
+                    <TableCell>75</TableCell>
+                    <TableCell>90.0</TableCell>
+                    <TableCell>1.0</TableCell>
+                    <TableCell>1.0</TableCell>
+                    <TableCell>1.0</TableCell>
+                    <TableCell>1.0</TableCell>
+                    <TableCell>120.0</TableCell>
+                    <TableCell>80.0</TableCell>
+                    <TableCell>99.0</TableCell>
+                    <TableCell>193.0</TableCell>
+                    <TableCell>48.0</TableCell>
+                    <TableCell>126.0</TableCell>
+                    <TableCell>92.0</TableCell>
+                    <TableCell>17.1</TableCell>
+                    <TableCell>1.0</TableCell>
+                    <TableCell>1.0</TableCell>
+                    <TableCell>21.0</TableCell>
+                    <TableCell>35.0</TableCell>
+                    <TableCell>40.0</TableCell>
+                    <TableCell>1.0</TableCell>
+                    <TableCell>Y</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="font-medium">1</TableCell>
+                    <TableCell>Male</TableCell>
+                    <TableCell>30</TableCell>
+                    <TableCell>180</TableCell>
+                    <TableCell>80</TableCell>
+                    <TableCell>89.0</TableCell>
+                    <TableCell>0.9</TableCell>
+                    <TableCell>1.2</TableCell>
+                    <TableCell>1.0</TableCell>
+                    <TableCell>1.0</TableCell>
+                    <TableCell>130.0</TableCell>
+                    <TableCell>82.0</TableCell>
+                    <TableCell>106.0</TableCell>
+                    <TableCell>228.0</TableCell>
+                    <TableCell>55.0</TableCell>
+                    <TableCell>148.0</TableCell>
+                    <TableCell>121.0</TableCell>
+                    <TableCell>15.8</TableCell>
+                    <TableCell>1.0</TableCell>
+                    <TableCell>0.9</TableCell>
+                    <TableCell>20.0</TableCell>
+                    <TableCell>36.0</TableCell>
+                    <TableCell>27.0</TableCell>
+                    <TableCell>3.0</TableCell>
+                    <TableCell>N</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="font-medium">2</TableCell>
+                    <TableCell>Male</TableCell>
+                    <TableCell>40</TableCell>
+                    <TableCell>165</TableCell>
+                    <TableCell>75</TableCell>
+                    <TableCell>91.0</TableCell>
+                    <TableCell>1.2</TableCell>
+                    <TableCell>1.5</TableCell>
+                    <TableCell>1.0</TableCell>
+                    <TableCell>1.0</TableCell>
+                    <TableCell>120.0</TableCell>
+                    <TableCell>70.0</TableCell>
+                    <TableCell>98.0</TableCell>
+                    <TableCell>136.0</TableCell>
+                    <TableCell>41.0</TableCell>
+                    <TableCell>74.0</TableCell>
+                    <TableCell>104.0</TableCell>
+                    <TableCell>15.8</TableCell>
+                    <TableCell>1.0</TableCell>
+                    <TableCell>0.9</TableCell>
+                    <TableCell>47.0</TableCell>
+                    <TableCell>32.0</TableCell>
+                    <TableCell>68.0</TableCell>
+                    <TableCell>1.0</TableCell>
+                    <TableCell>N</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="font-medium">3</TableCell>
+                    <TableCell>Male</TableCell>
+                    <TableCell>50</TableCell>
+                    <TableCell>175</TableCell>
+                    <TableCell>80</TableCell>
+                    <TableCell>91.0</TableCell>
+                    <TableCell>1.5</TableCell>
+                    <TableCell>1.2</TableCell>
+                    <TableCell>1.0</TableCell>
+                    <TableCell>1.0</TableCell>
+                    <TableCell>145.0</TableCell>
+                    <TableCell>87.0</TableCell>
+                    <TableCell>95.0</TableCell>
+                    <TableCell>201.0</TableCell>
+                    <TableCell>76.0</TableCell>
+                    <TableCell>104.0</TableCell>
+                    <TableCell>106.0</TableCell>
+                    <TableCell>17.6</TableCell>
+                    <TableCell>1.0</TableCell>
+                    <TableCell>1.1</TableCell>
+                    <TableCell>29.0</TableCell>
+                    <TableCell>34.0</TableCell>
+                    <TableCell>18.0</TableCell>
+                    <TableCell>1.0</TableCell>
+                    <TableCell>N</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="font-medium">4</TableCell>
+                    <TableCell>Male</TableCell>
+                    <TableCell>50</TableCell>
+                    <TableCell>165</TableCell>
+                    <TableCell>60</TableCell>
+                    <TableCell>80.0</TableCell>
+                    <TableCell>1.0</TableCell>
+                    <TableCell>1.2</TableCell>
+                    <TableCell>1.0</TableCell>
+                    <TableCell>1.0</TableCell>
+                    <TableCell>138.0</TableCell>
+                    <TableCell>82.0</TableCell>
+                    <TableCell>101.0</TableCell>
+                    <TableCell>199.0</TableCell>
+                    <TableCell>61.0</TableCell>
+                    <TableCell>117.0</TableCell>
+                    <TableCell>104.0</TableCell>
+                    <TableCell>13.8</TableCell>
+                    <TableCell>1.0</TableCell>
+                    <TableCell>0.8</TableCell>
+                    <TableCell>19.0</TableCell>
+                    <TableCell>12.0</TableCell>
+                    <TableCell>25.0</TableCell>
+                    <TableCell>1.0</TableCell>
+                    <TableCell>N</TableCell>
+                </TableRow>
+            </TableBody>
+        </Table>
+
+        <p class="mt-5">
+            This dataset has been sourced from Kaggle. For more information
+            about the measures used in each column, please refer to the <a
+                href="https://www.kaggle.com/datasets/sooyoungher/smoking-drinking-dataset"
+                class="underline font-bold">source</a
+            >.
+        </p>
     </div>
 
     <div class="mt-8 mb-3">
