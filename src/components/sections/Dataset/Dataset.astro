@@ -1,5 +1,14 @@
 ---
 import { Calendar } from "lucide-react";
+import {
+    Table,
+    TableBody,
+    TableCaption,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@/components/ui/table";
 ---
 
 <section id="dataset" class="container max-w-5xl px-1 mt-14 mb-5">
@@ -18,7 +27,17 @@ import { Calendar } from "lucide-react";
 
     <div class="mt-8 mb-3">
         <h3 class="font-bold text-2xl">Description</h3>
-        <p class="italic">Pending...</p>
+        <p>
+            This dataset, sourced from <a
+                href="https://www.kaggle.com/datasets/sooyoungher/smoking-drinking-dataset"
+                class="underline font-bold"
+                target="_blank">Kaggle</a
+            >, has been obtained from the National Health Insurance Service in
+            Korea, with all personal and sensitive information removed. The
+            dataset aims to facilitate the classification of individuals as
+            smokers or drinkers.
+        </p>
+        
     </div>
 
     <div class="mt-8 mb-3">
