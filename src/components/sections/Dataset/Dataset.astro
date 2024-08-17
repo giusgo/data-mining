@@ -3,7 +3,6 @@ import { Calendar } from "lucide-react";
 import {
     Table,
     TableBody,
-    TableCaption,
     TableCell,
     TableHead,
     TableHeader,
@@ -208,7 +207,8 @@ import {
             This dataset has been sourced from Kaggle. For more information
             about the measures used in each column, please refer to the <a
                 href="https://www.kaggle.com/datasets/sooyoungher/smoking-drinking-dataset"
-                class="underline font-bold">source</a
+                class="underline font-bold"
+                target="_blank">source</a
             >.
         </p>
     </div>
@@ -234,20 +234,80 @@ import {
             alcohol and if they smoke frequently.
         </p>
 
-        <h4 class="font-bold text-xl mt-2">Goals</h4>
-        <ol class="list-decimal list-inside pl-5 space-y-2 mt-2">
+        <h4 class="font-bold text-xl mt-2 ml-5">Goals</h4>
+        <ol class="list-decimal list-inside pl-5 space-y-2 mt-2 ml-5">
             <li>
                 Perform an exploratory analysis with the data that will be used
-                to predict the model.
+                on a machine learning model.
             </li>
             <li>
-                Train machine learning models to predict whether a person
-                consumes alcohol or smokes.
+                Using that model, predict whether a person consumes alcohol or
+                smokes.
             </li>
         </ol>
     </div>
     <div class="mt-8 mb-3">
         <h3 class="font-bold text-2xl">Relevance</h3>
-        <p class="italic">Pending...</p>
+        <p class="mt-5">
+            The primary goal of this project is to analyze body signals and
+            classify individuals based on their smoking and drinking habits. The
+            dataset aligns perfectly with these objectives by providing key
+            health metrics (e.g., blood pressure, cholesterol levels, and liver
+            enzymes) alongside smoking and drinking status. These variables are
+            essential for identifying potential health risks associated with
+            these habits, enabling the development of predictive models and
+            classifications.
+        </p>
+
+        <h4 class="font-bold text-xl mt-2 ml-5">Case studies</h4>
+        <h5 class="font-bold text-lg mt-2 ml-10">
+            Classifying smoking urges via machine learning
+        </h5>
+        <p class="mt-2 ml-10">
+            This study explores the use of machine learning methods to predict
+            high-urge states during a smoking cessation attempt. Three
+            classification approaches (Bayes, discriminant analysis, and
+            decision trees) were evaluated using data from over 300
+            participants. The results indicated that decision trees, based on
+            feature selection, achieved the highest accuracy, with 86%
+            classification precision. This highlights the potential of machine
+            learning to enhance smoking cessation interventions through mobile
+            technologies, optimizing healthcare resources and providing
+            personalized real-time support.
+        </p>
+        <p class="reference mt-2 ml-10 italic underline">
+            <a href="https://pubmed.ncbi.nlm.nih.gov/28110725/" target="_blank"
+                >Dumortier, A., Beckjord, E., Shiffman, S., & Sejdić, E. (2016).
+                Classifying smoking urges via machine learning. Computer methods
+                and programs in biomedicine, 137, 203-213.</a
+            >
+        </p>
+        <h5 class="font-bold text-lg mt-4 ml-10">
+            Analizing influence of smoking and alcohol drinking behaviors on
+            body type with deep learning, machine learning and data mining
+            techniques
+        </h5>
+        <p class="mt-2 ml-10">
+            This study examines the use of deep learning, machine learning, and
+            data mining approaches to analyze the body types and consumption
+            patterns of alcohol and smoking among various individuals. Despite
+            numerous studies in the literature highlighting the risks and
+            dangers of smoking and excessive, long-term alcohol use, there are
+            also studies that emphasize and cite the benefits of limited and
+            moderate alcohol consumption. The analysis aims to provide insights
+            to leaders and society in general by investigating behaviors that
+            have been present for centuries across different individuals,
+            groups, and societies.
+        </p>
+        <p class="reference mt-2 ml-10 italic underline">
+            <a
+                href="https://pejoss.com/index.php/pub/article/download/205/202"
+                target="_blank"
+                >YAVUZ, Ö. (2022). ANALYZING INFLUENCE OF SMOKING AND ALCOHOL
+                DRINKING BEHAVIORS ON BODY TYPE WITH DEEP LEARNING, MACHINE
+                LEARNING AND DATA MINING TECHNIQUES. Premium e-Journal of Social
+                Sciences (PEJOSS), 6(19), 46-58.</a
+            >
+        </p>
     </div>
 </section>
