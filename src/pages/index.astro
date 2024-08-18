@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Navbar from "@/components/sections/Navbar.astro";
 import Footer from "@/components/sections/Footer.astro";
 import Header from "@/components/sections/Header.astro";
+import Menu from "@/components/sections/Menu.astro";
 // Sections
 import Team from "@/components/sections/Team/Team.astro";
 import Dataset from "@/components/sections/Dataset/Dataset.astro";
@@ -14,6 +15,7 @@ import "@/styles/globals.css";
     <div class="container max-w-5xl border-b border-black dark:border-white">
     </div>
     <main class="flex-1">
+        <Menu />
         <Header />
         <div
             class="container max-w-5xl border-b border-black dark:border-white"
@@ -30,3 +32,35 @@ import "@/styles/globals.css";
     </div>
     <Footer />
 </Layout>
+
+<script is:inline>
+    // All this code if for the menu
+    let shouldShow = false;
+    const header = document.querySelector("header");
+    const menu = document.querySelector("#menu");
+
+    function isOnScreen(element) {
+        var rect = element.getBoundingClientRect();
+        var screenHeight = window.innerHeight;
+        return rect.top < screenHeight && rect.bottom > 0;
+    }
+
+    function displayMenu() {
+        shouldShow = !isOnScreen(header);
+        if (shouldShow) {
+            menu.classList.remove("hidden");
+            setTimeout(() => {
+                menu.classList.remove("opacity-0");
+                menu.classList.add("opacity-100");
+            }, 100);
+        } else {
+            menu.classList.remove("opacity-100");
+            menu.classList.add("opacity-0");
+            setTimeout(() => {
+                menu.classList.add("hidden");
+            }, 100);
+        }
+    }
+
+    window.addEventListener("scroll", displayMenu);
+</script>
