@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 interface TeamMemberProps {
   src: string;
   name: string;
+  role: string;
   github: string;
   className?: string;
 }
@@ -14,7 +15,13 @@ function getInitials(name: string) {
   return initials;
 }
 
-export function TeamMember({ src, name, github, className }: TeamMemberProps) {
+export function TeamMember({
+  src,
+  name,
+  role,
+  github,
+  className,
+}: TeamMemberProps) {
   return (
     <div className={cn(["flex gap-10 place-items-center", className])}>
       <Avatar className="w-40 h-40 select-none">
@@ -27,6 +34,7 @@ export function TeamMember({ src, name, github, className }: TeamMemberProps) {
       </Avatar>
       <div>
         <p>{name}</p>
+        <p>{role}</p>
         <p className="italic">Universidad del Norte, Colombia</p>
       </div>
       <a href={github} target="_blank" rel="noopener noreferrer">
