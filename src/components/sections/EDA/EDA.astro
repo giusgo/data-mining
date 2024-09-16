@@ -1,0 +1,25 @@
+---
+import { Calendar } from "lucide-react";
+import Overview from "./Overview.astro";
+import Visualization from "./Visualization.astro";
+---
+
+<section id="eda" class="container max-w-5xl px-1 mt-14 mb-5">
+    <a href="#eda"
+        ><div class="flex items-center gap-3 group cursor-pointer">
+            <h2 class="font-bold text-4xl">Exploratory Data Analysis</h2><span
+                class="font-bold text-4xl hidden group-hover:block text-gray-400"
+                >#</span
+            >
+        </div></a
+    >
+    <div class="flex gap-2 mt-1 text-gray-500">
+        <Calendar />
+        <p class="italic">Sep 13, 2024</p>
+    </div>
+
+    <p class="mt-5"><span class="font-bold">Note:</span> These are just conclusions. More detailed information can be found on the <a class="underline" href="https://colab.research.google.com/drive/1LHMhK0K0PbHvY-FUVTogBD-X3KVj9_1A?usp=sharing" target="_blank">Google Colab jupyter notebook</a>.</p>
+
+    <Overview/>
+    <Visualization />
+</section>

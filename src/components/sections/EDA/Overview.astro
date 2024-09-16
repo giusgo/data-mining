@@ -1,0 +1,92 @@
+---
+import { Code } from "@/components/ownui/Code"
+---
+
+<div class="mt-8 mb-3">
+    <h3 class="font-bold text-2xl">Data overview</h3>
+    <p class="mt-5">
+        The dataset consists of <span class="font-bold">991,346 observations</span> and <span class="font-bold">24 variables</span>.
+    </p>
+
+    <h5 class="text-xl font-bold mt-4">Data Completeness</h5>
+    <p class="mt-2">All variables are fully populated with no missing data.</p>
+
+    <h5 class="text-xl font-bold mt-4">Data Types:</h5>
+    <ul class="list-disc list-inside mt-2 ml-6">
+        <li><strong>int64:</strong> 3 variables (e.g., age, height, weight)</li>
+        <li><strong>float64:</strong> 19 variables (e.g., waistline, cholesterol levels, blood pressure)</li>
+        <li><strong>object:</strong> 2 variables (e.g., sex, DRK_YN)</li>
+    </ul>
+
+    <h5 class="text-xl font-bold mt-4">Next Steps:</h5>
+    <ul class="list-disc list-inside mt-2 ml-6">
+        <li><strong>Data Quality:</strong> Check for consistency in categorical values.</li>
+        <li><strong>Outliers:</strong> Identify and handle any potential outliers.</li>
+    </ul>
+
+    <p class="mt-2">We will proceed with a thorough analysis to ensure the data's reliability and readiness for further processing.</p>
+
+    <Code command="df_smk_drnk.info()" output=`Data columns (total 24 columns):
+     #   Column            Non-Null Count   Dtype
+    ---  ------            --------------   -----
+     0   sex               991346 non-null  object
+     1   age               991346 non-null  int64
+     2   height            991346 non-null  int64
+     3   weight            991346 non-null  int64
+     4   waistline         991346 non-null  float64
+     5   sight_left        991346 non-null  float64
+     6   sight_right       991346 non-null  float64
+     7   hear_left         991346 non-null  float64
+     8   hear_right        991346 non-null  float64
+     9   SBP               991346 non-null  float64
+     10  DBP               991346 non-null  float64
+     11  BLDS              991346 non-null  float64
+     12  tot_chole         991346 non-null  float64
+     13  HDL_chole         991346 non-null  float64
+     14  LDL_chole         991346 non-null  float64
+     15  triglyceride      991346 non-null  float64
+     16  hemoglobin        991346 non-null  float64
+     17  urine_protein     991346 non-null  float64
+     18  serum_creatinine  991346 non-null  float64
+     19  SGOT_AST          991346 non-null  float64
+     20  SGOT_ALT          991346 non-null  float64
+     21  gamma_GTP         991346 non-null  float64
+     22  SMK_stat_type_cd  991346 non-null  float64
+     23  DRK_YN            991346 non-null  object
+    dtypes: float64(19), int64(3), object(2)`></Code>
+
+    <h4 class="text-xl font-bold mt-10">Converting Object Variables to Categorical Types</h4>
+
+    <p class="mb-4 mt-4">In this dataset, converting object variables to categorical types is a crucial step for efficient data handling and analysis. This conversion is essential for the following reasons:</p>
+
+    <ul class="list-disc list-inside mb-4">
+        <li class="mb-2"><strong>Memory Optimization:</strong> Converting object types to categorical reduces memory usage significantly.</li>
+        <li class="mb-2"><strong>Ease of Analysis:</strong> Categorical data simplifies statistical analysis and modeling processes.</li>
+        <li class="mb-2"><strong>Discrete Value Representation:</strong> Categorical variables represent discrete values, which is particularly important for:</li>
+        <ul class="list-disc list-inside ml-6">
+            <li class="mb-2"><strong>Group-Wise Operations:</strong> Facilitates operations and aggregations based on categories.</li>
+            <li class="mb-2"><strong>Machine Learning Models:</strong> Enables the creation of dummy variables and improves model performance.</li>
+        </ul>
+    </ul>
+
+    <p>Variables such as <code class="bg-gray-200 p-1 rounded">sex</code>, <code class="bg-gray-200 p-1 rounded">SMK_stat_type_cd</code>, and <code class="bg-gray-200 p-1 rounded">DRK_YN</code> are prime candidates for this conversion.</p>
+
+    <p>This can be done through the <code class="bg-gray-200 p-1 rounded">pd.Categorical()</code> method. Taking <code class="bg-gray-200 p-1 rounded">sex</code> as an example:</p>
+
+    <Code command="df_smk_drnk['sex'].unique()" output="array(['Male', 'Female'], dtype=object)"></Code>
+
+    <Code command=`# Map original values to new values
+df_smk_drnk['sex'] = df_smk_drnk['sex'].map({'Male': 'M', 'Female': 'F'})
+# Convert column to categorical type
+df_smk_drnk['sex'] = pd.Categorical(df_smk_drnk['sex'], categories=['M', 'F'], ordered=True)`></Code>
+
+    <p>Doing the same to the rest of columns:</p>
+
+    <Code command="df_smk_drnk.info()" output=`Data columns (total 24 columns):
+     #   Column            Non-Null Count   Dtype
+    ---  ------            --------------   -----
+     0   sex               991346 non-null  category
+     22  SMK_stat_type_cd  991346 non-null  category
+     23  DRK_YN            991346 non-null  category
+    dtypes: category(3), float64(18), int64(3)`></Code>
+</div>
