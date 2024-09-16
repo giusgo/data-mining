@@ -34,7 +34,7 @@ export function TeamMember({
       </Avatar>
       <div>
         <p>{name}</p>
-        <p>{role}</p>
+        <p className="font-bold">{role}</p>
         <p className="italic">Universidad del Norte, Colombia</p>
       </div>
       <a href={github} target="_blank" rel="noopener noreferrer">

@@ -204,13 +204,141 @@ import {
         </Table>
 
         <p class="mt-5">
-            This dataset has been sourced from Kaggle. For more information
+            This dataset has been sourced from Kaggle. For detailed information
             about the measures used in each column, please refer to the <a
                 href="https://www.kaggle.com/datasets/sooyoungher/smoking-drinking-dataset"
                 class="underline font-bold"
                 target="_blank">source</a
             >.
         </p>
+
+        <h4 class="font-bold text-xl mt-5">Description of variables</h4>
+        <Table className="mt-5">
+            <TableHeader>
+                <TableRow>
+                    <TableHead className="w-[50px]">Index</TableHead>
+                    <TableHead>Variable</TableHead>
+                    <TableHead>Description</TableHead>
+                </TableRow>
+            </TableHeader>
+            <TableBody>
+                <TableRow>
+                    <TableCell className="font-medium">1</TableCell>
+                    <TableCell>Sex</TableCell>
+                    <TableCell>Indicates the individual's gender, which can be male or female.</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="font-medium">2</TableCell>
+                    <TableCell>Age</TableCell>
+                    <TableCell>The individual's age, rounded to the nearest 5 years.</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="font-medium">3</TableCell>
+                    <TableCell>Height</TableCell>
+                    <TableCell>The individual's height, rounded to the nearest 5 cm.</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="font-medium">4</TableCell>
+                    <TableCell>Weight</TableCell>
+                    <TableCell>The individual's weight, measured in kilograms.</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="font-medium">5</TableCell>
+                    <TableCell>Sight_left</TableCell>
+                    <TableCell>Visual acuity of the left eye, assessed as normal or abnormal.</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="font-medium">6</TableCell>
+                    <TableCell>Sight_right</TableCell>
+                    <TableCell>Visual acuity of the right eye, assessed as normal or abnormal.</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="font-medium">7</TableCell>
+                    <TableCell>Hear_left</TableCell>
+                    <TableCell>Hearing status of the left ear, classified as normal (1) or abnormal (2).</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="font-medium">8</TableCell>
+                    <TableCell>Hear_right</TableCell>
+                    <TableCell>Hearing status of the right ear, classified as normal (1) or abnormal (2).</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="font-medium">9</TableCell>
+                    <TableCell>SBP (Systolic Blood Pressure)</TableCell>
+                    <TableCell>The systolic blood pressure measurement, in mmHg.</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="font-medium">10</TableCell>
+                    <TableCell>DBP (Diastolic Blood Pressure)</TableCell>
+                    <TableCell>The diastolic blood pressure measurement, in mmHg.</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="font-medium">11</TableCell>
+                    <TableCell>BLDS (Fasting Blood Glucose)</TableCell>
+                    <TableCell>Blood glucose level after fasting, measured in mg/dL.</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="font-medium">12</TableCell>
+                    <TableCell>Tot_chole (Total Cholesterol)</TableCell>
+                    <TableCell>Total cholesterol level in the blood, measured in mg/dL.</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="font-medium">13</TableCell>
+                    <TableCell>HDL_chole (HDL Cholesterol)</TableCell>
+                    <TableCell>High-density lipoprotein cholesterol level in the blood, measured in mg/dL.</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="font-medium">14</TableCell>
+                    <TableCell>LDL_chole (LDL Cholesterol)</TableCell>
+                    <TableCell>Low-density lipoprotein cholesterol level in the blood, measured in mg/dL.</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="font-medium">15</TableCell>
+                    <TableCell>Triglyceride</TableCell>
+                    <TableCell>Triglyceride level in the blood, measured in mg/dL.</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="font-medium">16</TableCell>
+                    <TableCell>Hemoglobin</TableCell>
+                    <TableCell>Hemoglobin concentration in the blood, measured in g/dL.</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="font-medium">17</TableCell>
+                    <TableCell>Urine_protein</TableCell>
+                    <TableCell>Protein level in urine, classified from absence (-) to significant presence (+4).</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="font-medium">18</TableCell>
+                    <TableCell>Serum_creatinine</TableCell>
+                    <TableCell>Serum creatinine level, measured in mg/dL.</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="font-medium">19</TableCell>
+                    <TableCell>SGOT_AST (SGOT/AST)</TableCell>
+                    <TableCell>Serum level of aspartate aminotransferase (SGOT/AST), measured in IU/L.</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="font-medium">20</TableCell>
+                    <TableCell>SGOT_ALT (SGOT/ALT)</TableCell>
+                    <TableCell>Serum level of alanine aminotransferase (SGOT/ALT), measured in IU/L.</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="font-medium">21</TableCell>
+                    <TableCell>Gamma_GTP</TableCell>
+                    <TableCell>Serum level of gamma-glutamyl transpeptidase (Gamma-GTP), measured in IU/L.</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="font-medium">22</TableCell>
+                    <TableCell>SMK_stat_type_cd (Smoking Status)</TableCell>
+                    <TableCell>Classification of smoking status, which can be never smoked (1), used to smoke but quit (2), or currently smoking (3).</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="font-medium">23</TableCell>
+                    <TableCell>DRK_YN (Drinker or Not)</TableCell>
+                    <TableCell>Indicates whether the individual consumes alcohol or not.</TableCell>
+                </TableRow>
+            </TableBody>
+        </Table>
     </div>
 
     <div class="mt-8 mb-3">
