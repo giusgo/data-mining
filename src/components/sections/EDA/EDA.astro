@@ -1,7 +1,10 @@
 ---
 import { Calendar } from "lucide-react";
+import Extra from "./Extra.astro";
 import Overview from "./Overview.astro";
 import Visualization from "./Visualization.astro";
+import Cleaning from "./Cleaning.astro";
+import Imputation from "./Imputation.astro";
 ---
 
 <section id="eda" class="container max-w-5xl px-1 mt-14 mb-5">
@@ -20,6 +23,9 @@ import Visualization from "./Visualization.astro";
 
     <p class="mt-5"><span class="font-bold">Note:</span> These are just conclusions. More detailed information can be found on the <a class="underline" href="https://colab.research.google.com/drive/1LHMhK0K0PbHvY-FUVTogBD-X3KVj9_1A?usp=sharing" target="_blank">Google Colab jupyter notebook</a>.</p>
 
+    <Extra />
     <Overview/>
     <Visualization />
+    <Cleaning />
+    <Imputation />
 </section>

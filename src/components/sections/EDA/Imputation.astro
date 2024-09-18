@@ -1,0 +1,53 @@
+---
+import { Code } from "@/components/ownui/Code"
+---
+
+<div class="mt-8 mb-3">
+    <h3 class="font-bold text-2xl">Data imputation</h3>
+
+    <p class="my-5">There are no missing values in the dataset.</p>
+
+    <Code command="print((df_cleaned.isnull().sum() / len(df_cleaned)) * 100)" output=`
+    .
+    sex                 0.0
+    age                 0.0
+    height              0.0
+    weight              0.0
+    waistline           0.0
+    sight_left          0.0
+    sight_right         0.0
+    hear_left           0.0
+    hear_right          0.0
+    SBP                 0.0
+    DBP                 0.0
+    BLDS                0.0
+    tot_chole           0.0
+    HDL_chole           0.0
+    LDL_chole           0.0
+    triglyceride        0.0
+    hemoglobin          0.0
+    urine_protein       0.0
+    serum_creatinine    0.0
+    SGOT_AST            0.0
+    SGOT_ALT            0.0
+    gamma_GTP           0.0
+    SMK_stat_type_cd    0.0
+    DRK_YN              0.0
+    dtype: float64
+`></Code>
+
+    <p class="my-5">There were <span class="font-bold">14 duplicated rows.</span></p>
+
+    <Code command=`
+num_duplicated = df_cleaned.duplicated().sum()
+print(f'Number of duplicate rows: {num_duplicated}')`
+output="Number of duplicate rows: 14"></Code>
+
+    <p class="my-5">After elimination:</p>
+
+    <Code command=`
+df_cleaned.drop_duplicates(inplace=True)
+num_duplicated = df_cleaned.duplicated().sum()
+print(f'Number of duplicate rows: {num_duplicated}')`
+output="Number of duplicate rows: 0"></Code>
+</div>

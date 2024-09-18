@@ -1,3 +1,49 @@
 <div class="mt-8 mb-3">
     <h3 class="font-bold text-2xl">Data visualization</h3>
+    <h4 class="font-bold text-xl">Analysis of categorical variables</h4>
+
+    <div class="analysis my-5">
+        <h5 class="font-bold text-lg">Sex distribution</h5>
+        <ul class="list-disc list-inside mb-4">
+            <li><span class="font-semibold">M (Male):</span> 526,415 individuals.</li>
+            <li><span class="font-semibold">F (Female):</span> 464,931 individuals.</li>
+        </ul>
+        <p class="text-gray-700">
+        <span class="font-bold">Interpretation:</span>
+            The dataset has a fairly balanced gender distribution, with a slightly higher number of males than females. This balance is beneficial for gender-specific analysis, as it minimizes the risk of gender bias in the results.
+        </p>
+        <div class="flex justify-center w-full">
+            <img src="/data-mining/imgs/eda/gender.png" alt="">
+        </div>
+    </div>
+    <div class="analysis my-5">
+        <h5 class="font-bold text-lg">Smoking status (SMK_stat_type_cd)</h5>
+        <ul class="list-disc list-inside mb-4">
+            <li><span class="font-semibold">Never smoked:</span> 602,441 individuals</li>
+            <li><span class="font-semibold">Still smoke:</span> 213,954 individuals</li>
+            <li><span class="font-semibold">Used to smoke but quit</span> 174,951 individuals</li>
+        </ul>
+        <p class="text-gray-700">
+        <span class="font-bold">Interpretation:</span>
+            The majority of individuals (about 60.8%) in the dataset have never smoked. About 21.6% are current smokers, while 17.6% used to smoke but quit. This distribution allows for detailed analysis of smoking habits and their impact on health outcomes.
+        </p>
+        <div class="flex justify-center w-full">
+            <img src="/data-mining/imgs/eda/smoking_bars.png" alt="" class="max-w-2xl h-auto object-contain">
+            <img src="/data-mining/imgs/eda/smoking_pie.png" alt="" class="max-w-lg h-auto object-contain">
+        </div>
+    </div>
+    <div class="analysis my-5">
+        <h5 class="font-bold text-lg">Drinking Status (DRK_YN)</h5>
+        <ul class="list-disc list-inside mb-4">
+            <li><span class="font-semibold">N (Non-drinkers):</span> 495,858 individuals</li>
+            <li><span class="font-semibold">Y (Drinkers):</span> 495,488 individuals</li>
+        </ul>
+        <p class="text-gray-700">
+        <span class="font-bold">Interpretation:</span>
+            The dataset is almost perfectly balanced in terms of drinking status, with an almost equal split between drinkers and non-drinkers. This balance provides a solid foundation for comparative analysis between these two groups.
+        </p>
+        <div class="flex justify-center w-full">
+            <img src="/data-mining/imgs/eda/drinking.png" alt="" class="">
+        </div>
+    </div>
 </div>
