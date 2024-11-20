@@ -1,49 +1,216 @@
 <div class="mt-8 mb-3">
-    <h3 class="font-bold text-2xl">Data visualization</h3>
-    <h4 class="font-bold text-xl">Analysis of categorical variables</h4>
+  <h3 class="font-bold text-2xl">Data visualization</h3>
+  <h4 class="font-bold text-xl">Analysis of categorical variables</h4>
 
-    <div class="analysis my-5">
-        <h5 class="font-bold text-lg">Sex distribution</h5>
-        <ul class="list-disc list-inside mb-4">
-            <li><span class="font-semibold">M (Male):</span> 526,415 individuals.</li>
-            <li><span class="font-semibold">F (Female):</span> 464,931 individuals.</li>
-        </ul>
-        <p class="text-gray-700">
-        <span class="font-bold">Interpretation:</span>
-            The dataset has a fairly balanced gender distribution, with a slightly higher number of males than females. This balance is beneficial for gender-specific analysis, as it minimizes the risk of gender bias in the results.
-        </p>
-        <div class="flex justify-center w-full">
-            <img src="/data-mining/imgs/eda/gender.png" alt="">
-        </div>
+  <div class="analysis my-5">
+    <h5 class="font-bold text-lg">Sex distribution</h5>
+    <ul class="list-disc list-inside mb-4">
+      <li><span class="font-semibold">M (Male):</span> 526,415 individuals.</li>
+      <li>
+        <span class="font-semibold">F (Female):</span> 464,931 individuals.
+      </li>
+    </ul>
+    <p class="text-gray-700">
+      <span class="font-bold">Interpretation:</span>
+      The dataset has a fairly balanced gender distribution, with a slightly higher
+      number of males than females. This balance is beneficial for gender-specific
+      analysis, as it minimizes the risk of gender bias in the results.
+    </p>
+    <div class="flex justify-center w-full">
+      <img src="/data-mining/imgs/eda/gender.png" alt="" />
     </div>
-    <div class="analysis my-5">
-        <h5 class="font-bold text-lg">Smoking status (SMK_stat_type_cd)</h5>
-        <ul class="list-disc list-inside mb-4">
-            <li><span class="font-semibold">Never smoked:</span> 602,441 individuals</li>
-            <li><span class="font-semibold">Still smoke:</span> 213,954 individuals</li>
-            <li><span class="font-semibold">Used to smoke but quit</span> 174,951 individuals</li>
-        </ul>
-        <p class="text-gray-700">
-        <span class="font-bold">Interpretation:</span>
-            The majority of individuals (about 60.8%) in the dataset have never smoked. About 21.6% are current smokers, while 17.6% used to smoke but quit. This distribution allows for detailed analysis of smoking habits and their impact on health outcomes.
-        </p>
-        <div class="flex justify-center w-full">
-            <img src="/data-mining/imgs/eda/smoking_bars.png" alt="" class="max-w-2xl h-auto object-contain">
-            <img src="/data-mining/imgs/eda/smoking_pie.png" alt="" class="max-w-lg h-auto object-contain">
-        </div>
+  </div>
+  <div class="analysis my-5">
+    <h5 class="font-bold text-lg">Smoking status (SMK_stat_type_cd)</h5>
+    <ul class="list-disc list-inside mb-4">
+      <li>
+        <span class="font-semibold">Never smoked:</span> 602,441 individuals
+      </li>
+      <li>
+        <span class="font-semibold">Still smoke:</span> 213,954 individuals
+      </li>
+      <li>
+        <span class="font-semibold">Used to smoke but quit</span> 174,951 individuals
+      </li>
+    </ul>
+    <p class="text-gray-700">
+      <span class="font-bold">Interpretation:</span>
+      The majority of individuals (about 60.8%) in the dataset have never smoked.
+      About 21.6% are current smokers, while 17.6% used to smoke but quit. This distribution
+      allows for detailed analysis of smoking habits and their impact on health outcomes.
+    </p>
+    <div class="flex justify-center w-full">
+      <img
+        src="/data-mining/imgs/eda/smoking_bars.png"
+        alt=""
+        class="max-w-2xl h-auto object-contain"
+      />
+      <img
+        src="/data-mining/imgs/eda/smoking_pie.png"
+        alt=""
+        class="max-w-lg h-auto object-contain"
+      />
     </div>
-    <div class="analysis my-5">
-        <h5 class="font-bold text-lg">Drinking Status (DRK_YN)</h5>
-        <ul class="list-disc list-inside mb-4">
-            <li><span class="font-semibold">N (Non-drinkers):</span> 495,858 individuals</li>
-            <li><span class="font-semibold">Y (Drinkers):</span> 495,488 individuals</li>
-        </ul>
-        <p class="text-gray-700">
-        <span class="font-bold">Interpretation:</span>
-            The dataset is almost perfectly balanced in terms of drinking status, with an almost equal split between drinkers and non-drinkers. This balance provides a solid foundation for comparative analysis between these two groups.
-        </p>
-        <div class="flex justify-center w-full">
-            <img src="/data-mining/imgs/eda/drinking.png" alt="" class="">
-        </div>
+  </div>
+  <div class="analysis my-5">
+    <h5 class="font-bold text-lg">Drinking Status (DRK_YN)</h5>
+    <ul class="list-disc list-inside mb-4">
+      <li>
+        <span class="font-semibold">N (Non-drinkers):</span> 495,858 individuals
+      </li>
+      <li>
+        <span class="font-semibold">Y (Drinkers):</span> 495,488 individuals
+      </li>
+    </ul>
+    <p class="text-gray-700">
+      <span class="font-bold">Interpretation:</span>
+      The dataset is almost perfectly balanced in terms of drinking status, with
+      an almost equal split between drinkers and non-drinkers. This balance provides
+      a solid foundation for comparative analysis between these two groups.
+    </p>
+    <div class="flex justify-center w-full">
+      <img src="/data-mining/imgs/eda/drinking.png" alt="" class="" />
     </div>
+  </div>
+  <div class="analysis my-5">
+    <h5 class="font-bold text-lg">Age Distribution by Drinking Status</h5>
+    <ul class="list-disc list-inside mb-4">
+      <li>
+        Drinking appears to peak between the ages of 30 and 50, with a gradual
+        decline starting around 50 years old.
+      </li>
+      <li>
+        The number of non-drinkers increases with age, particularly after 60
+        years, potentially due to health concerns or lifestyle changes.
+      </li>
+      <li>
+        Younger individuals (ages 20–30) show a noticeable presence of drinkers,
+        but non-drinkers remain relatively close in count.
+      </li>
+      <li>
+        Around ages 55–60, the proportion of non-drinkers surpasses that of
+        drinkers. This shift suggests a critical age where drinking behavior
+        declines substantially.
+      </li>
+    </ul>
+    <div class="flex justify-center w-full">
+      <img src="/data-mining/imgs/eda/drinking-distr.png" alt="" class="" />
+    </div>
+  </div>
+  <div class="analysis my-5">
+    <h5 class="font-bold text-lg">Age Distribution by Smoking Status</h5>
+    <ul class="list-disc list-inside mb-4">
+      <li>
+        The "Still Smoking" category (blue) has the highest density across all
+        age groups, indicating that a significant portion of the population
+        continues to smoke.
+      </li>
+      <li>
+        The "Never Smoked" category (green) has a relatively consistent but
+        lower density compared to "Still Smoking." This suggests that a smaller
+        but steady group of individuals never pick up smoking across all ages.
+      </li>
+      <li>
+        The "Quit Smoking" category (orange) appears to increase slightly with
+        age, especially beyond 40 years. This may indicate that older
+        individuals are more likely to quit smoking, possibly due to health
+        concerns or lifestyle changes.
+      </li>
+      <li>
+        Younger individuals (ages 20–30) show fewer instances of smoking (both
+        active and quit), likely reflecting greater awareness or a shift in
+        social norms discouraging smoking in recent years.
+      </li>
+    </ul>
+    <div class="flex justify-center w-full">
+      <img src="/data-mining/imgs/eda/smoking-distr.png" alt="" class="" />
+    </div>
+  </div>
+  <div class="analysis my-5">
+    <h5 class="font-bold text-lg">
+      Pairplot of Key Body Signals by Drinking Status
+    </h5>
+    <ul class="list-disc list-inside mb-4">
+      <li>
+        Both drinkers and non-drinkers have similar hemoglobin distributions,
+        with minor differences visible in density. This suggests hemoglobin
+        might not strongly differentiate drinkers from non-drinkers.
+      </li>
+      <li>
+        Drinkers have a broader range and significantly higher values for
+        gamma-GTP compared to non-drinkers. This confirms gamma-GTP as a
+        potential key indicator for distinguishing drinkers due to its known
+        association with liver stress from alcohol consumption.
+      </li>
+      <li>
+        Most values for serum creatinine are concentrated at lower levels for
+        both groups, with no significant visual separation between drinkers and
+        non-drinkers.
+      </li>
+    </ul>
+    <p class="font-bold">RELATIONSHIPS:</p>
+    <ul class="list-disc list-inside mb-4">
+      <li>
+        <span class="font-semibold">Hemoglobin vs. Gamma-GTP:</span>
+        No clear relationship is observed, but drinkers have more outliers for gamma-GTP
+        at certain hemoglobin levels.
+      </li>
+      <li>
+        <span class="font-semibold">Gamma-GTP vs. Serum Creatinine:</span>
+        There is no evident correlation, as serum creatinine values remain low regardless
+        of gamma-GTP levels.
+      </li>
+    </ul>
+    <div class="flex justify-center w-full">
+      <img
+        src="/data-mining/imgs/eda/pairplot-key-signals-drinking.png"
+        alt=""
+        class=""
+      />
+    </div>
+  </div>
+  <div class="analysis my-5">
+    <h5 class="font-bold text-lg">
+      Pairplot of Key Body Signals by Smoking Status
+    </h5>
+    <ul class="list-disc list-inside mb-4">
+      <li>
+        <span class="font-semibold">Never Smokers (1):</span> Never-smokers generally
+        have the highest hemoglobin levels, which is expected as they are not exposed
+        to the harmful effects of smoking.
+      </li>
+      <li>
+        <span class="font-semibold">Former Smokers (2):</span> Former smokers seem
+        to have intermediate hemoglobin levels between current smokers and never-smokers.
+        This suggests that quitting smoking can lead to some recovery in hemoglobin
+        levels over time.
+      </li>
+      <li>
+        <span class="font-semibold">Smokers (3):</span> Smokers tend to have slightly
+        lower hemoglobin levels compared to never-smokers and former smokers. This
+        could be due to various factors, including reduced oxygen-carrying capacity
+        in the blood due to carbon monoxide exposure.
+      </li>
+      <li>
+        <span class="font-semibold">Gamma-GTP:</span> There's a clear difference
+        in distribution. The "still smoke" group has a higher concentration of gamma-GTP
+        compared to the other two groups. This could indicate potential liver damage
+        or dysfunction associated with smoking.
+      </li>
+      <li>
+        <span class="font-semibold">Serum Creatinine:</span> The distribution is
+        similar across all groups, suggesting no significant impact of smoking status
+        on kidney function.
+      </li>
+    </ul>
+    <p class="font-bold">RELATIONSHIPS:</p>
+    No clear relationship is visible between any of the variables
+    <div class="flex justify-center w-full">
+      <img
+        src="/data-mining/imgs/eda/pairplot-key-signals-smoking.png"
+        alt=""
+        class=""
+      />
+    </div>
+  </div>
 </div>
