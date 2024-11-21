@@ -1,0 +1,27 @@
+---
+import { Calendar } from "lucide-react";
+---
+
+<section id="dashboard" class="container max-w-5xl px-1 mt-14 mb-5">
+  <a href="#dashboard"
+    ><div class="flex items-center gap-3 group cursor-pointer">
+      <h2 class="font-bold text-4xl">Dashboard</h2><span
+        class="font-bold text-4xl hidden group-hover:block text-gray-400"
+        >#</span
+      >
+    </div></a
+  >
+  <div class="flex gap-2 mt-1 text-gray-500">
+    <Calendar />
+    <p class="italic">Nov 15, 2024</p>
+  </div>
+
+  <iframe
+    class="w-full h-[80vh] mt-8"
+    src="https://lookerstudio.google.com/embed/reporting/1b8db068-f715-436c-b89f-148a4a53a818/page/zyXTE"
+    frameborder="0"
+    style="border:0"
+    allowfullscreen
+    sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+  ></iframe>
+</section>
