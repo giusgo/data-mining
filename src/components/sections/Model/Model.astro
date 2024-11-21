@@ -1,0 +1,226 @@
+---
+import { Calendar } from "lucide-react";
+import { Code } from "@/components/ownui/Code";
+import ResultsCard from "@/components/ownui/ClassificationReport";
+
+const smoking_status_data = {
+  accuracy: 0.721,
+  precision: 0.59,
+  recall: 0.579,
+  f1Score: 0.583,
+  classificationReport: [
+    {
+      label: "1.0 (never)",
+      precision: 0.84,
+      recall: 0.86,
+      f1Score: 0.85,
+      support: 126741,
+    },
+    {
+      label: "2.0 (used to smoke but quit)",
+      precision: 0.45,
+      recall: 0.36,
+      f1Score: 0.4,
+      support: 29950,
+    },
+    {
+      label: "3.0 (still smoke)",
+      precision: 0.49,
+      recall: 0.51,
+      f1Score: 0.5,
+      support: 35138,
+    },
+  ],
+  crossValidationScores: [
+    0.72062109, 0.72017426, 0.72231903, 0.71899017, 0.7169571, 0.72115728,
+    0.71925827, 0.71624218, 0.71919124, 0.72097232,
+  ],
+  meanCVAccuracy: 0.72,
+};
+
+const drinking_status_data = {
+  accuracy: 0.709,
+  precision: 0.709,
+  recall: 0.709,
+  f1Score: 0.709,
+  classificationReport: [
+    {
+      label: "0.0",
+      precision: 0.73,
+      recall: 0.72,
+      f1Score: 0.72,
+      support: 100976,
+    },
+    {
+      label: "1.0",
+      precision: 0.69,
+      recall: 0.7,
+      f1Score: 0.69,
+      support: 90853,
+    },
+  ],
+  crossValidationScores: [
+    0.70828865, 0.70976318, 0.70989723, 0.70781948, 0.70958445, 0.70735031,
+    0.70504915, 0.70592046, 0.70607685, 0.70703099,
+  ],
+  meanCVAccuracy: 0.708,
+};
+---
+
+<section id="model" class="container max-w-5xl px-1 mt-14 mb-5">
+  <a href="#model"
+    ><div class="flex items-center gap-3 group cursor-pointer">
+      <h2 class="font-bold text-4xl">Model</h2><span
+        class="font-bold text-4xl hidden group-hover:block text-gray-400"
+        >#</span
+      >
+    </div></a
+  >
+  <div class="flex gap-2 mt-1 text-gray-500">
+    <Calendar />
+    <p class="italic">Oct 18, 2024</p>
+  </div>
+
+  <p class="mt-8 mb-3">
+    For this task, the <code class="bg-gray-200 p-1 rounded"
+      >RandomForestClassifier</code
+    > model was selected due to its robustness and ability to handle a large number
+    of features effectively.
+  </p>
+
+  <div class="mt-8 mb-3">
+    <h3 class="font-bold text-2xl">Training</h3>
+    <h4 class="text-xl font-semibold mt-4">Data Splitting</h4>
+    <p class="mt-2">
+      The dataset was split into training (70%) and test (30%) sets using <code
+        class="bg-gray-200 p-1 rounded">train_test_split</code
+      > with stratification to maintain the balance of classes in both sets.
+    </p>
+
+    <h4 class="text-xl font-semibold mt-4">Model Training</h4>
+    <ul class="list-disc list-inside mt-2">
+      <li>
+        <strong>Training Data:</strong> The training data was used to fit the <code
+          class="bg-gray-200 p-1 rounded">RandomForestClassifier</code
+        >.
+      </li>
+      <li>
+        <strong>Feature Scaling:</strong> We applied <code
+          class="bg-gray-200 p-1 rounded">StandardScaler</code
+        > to ensure all features were on the same scale.
+      </li>
+    </ul>
+
+    <h4 class="text-xl font-semibold mt-4">Computational Resources</h4>
+    <p class="mt-2">
+      The training was conducted on Google Colab, which provided ample CPU
+      resources for model training.
+    </p>
+
+    <h4 class="text-xl font-semibold mt-4">
+      Stratified 10-Fold Cross-Validation
+    </h4>
+    <p class="mt-2">
+      To evaluate the model's performance effectively, we implemented Stratified
+      10-Fold Cross-Validation. This method was chosen specifically to maintain
+      the class distribution across each fold, which is crucial when dealing
+      with imbalanced datasets. By ensuring that each training and testing set
+      reflects the overall class distribution, we can mitigate potential biases
+      and improve the reliability of our model evaluation.
+    </p>
+
+    <p class="mt-4">Here is an overview of the function:</p>
+
+    <Code
+      command=`def train_model(df, target_col, model_name):
+
+    X = df.drop(columns=['SMK_stat_type_cd', 'DRK_YN'])  # Features (excluding target variables)
+    y = df[target_col]  # Target (smoking or drinking)
+
+    # Split data into training and test sets (70% training, 30% testing)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)
+
+    # Feature scaling
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)
+
+    # Initialize RandomForestClassifier
+    rf_model = RandomForestClassifier(random_state=42, n_estimators=100, max_depth=10, min_samples_split=5)
+
+    # Train the model
+    rf_model.fit(X_train_scaled, y_train)
+
+    # Model Evaluation on the test set
+    y_pred = rf_model.predict(X_test_scaled)
+
+    # Performance metrics
+    accuracy = accuracy_score(y_test, y_pred)
+    precision = precision_score(y_test, y_pred, average='macro')
+    recall = recall_score(y_test, y_pred, average='macro')
+    f1 = f1_score(y_test, y_pred, average='macro')
+
+    # Confusion matrix
+    conf_matrix = confusion_matrix(y_test, y_pred)
+
+    # Print formatted results
+    print(f'# {model_name} Classification Results\n')
+    print(f'**Accuracy:** {accuracy:.3f}')
+    print(f'**Precision:** {precision:.3f}')
+    print(f'**Recall:** {recall:.3f}')
+    print(f'**F1-Score:** {f1:.3f}\n')
+
+    print(f'## Classification Report:')
+    print(classification_report(y_test, y_pred))
+
+    # Cross-validation with StratifiedKFold
+    cv = StratifiedKFold(n_splits=10, shuffle=True, random_state=42)
+    cv_scores = cross_val_score(rf_model, X_train_scaled, y_train, cv=cv, scoring='accuracy')
+
+    # Print cross-validation results
+    print(f'## Cross-Validation Accuracy Scores: {cv_scores}')
+    print(f'**Mean CV Accuracy:** {np.mean(cv_scores):.3f}\n')
+
+    # Return model, confusion matrix, test labels, and unscaled X_train for feature importance
+    return rf_model, conf_matrix, y_test, X_train`
+    />
+
+    <h5 class="font-bold mt-8">Smoking Status</h5>
+    <p class="mt-2">The classificacion report returned these results:</p>
+    <ResultsCard data={smoking_status_data} />
+
+    <p class="mt-4">Here is the confusion matrix:</p>
+    <div class="flex justify-center w-full">
+      <img src="/data-mining/imgs/model/smoking_status.png" alt="" />
+    </div>
+
+    <p class="mt-4">
+      There are features that are driving the Random Forest model's predictions:
+    </p>
+    <div class="flex justify-center w-full">
+      <img
+        src="/data-mining/imgs/model/smoking_features_importance.png"
+        alt=""
+      />
+    </div>
+
+    <h5 class="font-bold mt-8">Drinking Status</h5>
+    <p class="mt-2">The classificacion report returned these results:</p>
+    <ResultsCard data={drinking_status_data} />
+
+    <p class="mt-4">Here is the confusion matrix:</p>
+    <div class="flex justify-center w-full">
+      <img src="/data-mining/imgs/model/drinking_status.png" alt="" />
+    </div>
+
+    <p class="mt-4">
+      There are features that are driving the Random Forest model's predictions:
+    </p>
+    <div class="flex justify-center w-full">
+      <img
+        src="/data-mining/imgs/model/drinking_features_importance.png"
+        alt=""
+      />
+    </div>
+  </div>
+</section>

@@ -1,3 +1,7 @@
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { darcula as style } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+
+
 interface CodeProps {
   command: string;
   output?: string;
@@ -23,15 +27,19 @@ export function Code({ command, output }: CodeProps) {
       </div>
       {/* Code */}
       <div
-        className="bg-gray-300 flex-1 p-2 border-gray-500 border-l-[40px] dark:text-black"
+        className="bg-[#2b2b2b] flex-1 p-2 border-[#38537a] border-l-[40px]"
         style={{ whiteSpace: "pre-wrap" }}
       >
-        {command}
+        <SyntaxHighlighter language="python" style={style}>
+          {command}
+        </SyntaxHighlighter>
       </div>
       {/* Output */}
+      {output ?
       <div className="w-full bg-gray-200 p-2">
         <pre className="text-gray-500 dark:text-gray-600">{output}</pre>
-      </div>
+      </div> : <></>}
+      
     </div>
   );
 }
