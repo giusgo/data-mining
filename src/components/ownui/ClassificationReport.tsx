@@ -35,7 +35,7 @@ const ResultsCard: React.FC<ResultsCardProps> = ({ data }) => {
 
   return (
     <div className="mx-auto mt-6 shadow-md border rounded-md p-4">
-      <div className="text-xl font-bold mb-4">Smoking Status Classification Results</div>
+      <div className="text-xl font-bold mb-4">Classification Report</div>
       <div className="space-y-4">
         <div>
           <p><strong>Accuracy:</strong> {accuracy.toFixed(3)}</p>

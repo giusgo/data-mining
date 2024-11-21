@@ -45,14 +45,14 @@ const drinking_status_data = {
   f1Score: 0.709,
   classificationReport: [
     {
-      label: "0.0",
+      label: "0.0 (No)",
       precision: 0.73,
       recall: 0.72,
       f1Score: 0.72,
       support: 100976,
     },
     {
-      label: "1.0",
+      label: "1.0 (Yes)",
       precision: 0.69,
       recall: 0.7,
       f1Score: 0.69,
@@ -64,6 +64,69 @@ const drinking_status_data = {
     0.70504915, 0.70592046, 0.70607685, 0.70703099,
   ],
   meanCVAccuracy: 0.708,
+};
+
+const hyper_smoking_data = {
+  accuracy: 0.721,
+  precision: 0.591,
+  recall: 0.578,
+  f1Score: 0.583,
+  classificationReport: [
+    {
+      label: "1.0 (never)",
+      precision: 0.84,
+      recall: 0.87,
+      f1Score: 0.85,
+      support: 126741,
+    },
+    {
+      label: "2.0 (used to smoke but quit)",
+      precision: 0.45,
+      recall: 0.36,
+      f1Score: 0.4,
+      support: 29950,
+    },
+    {
+      label: "3.0 (still smoke)",
+      precision: 0.49,
+      recall: 0.51,
+      f1Score: 0.5,
+      support: 35138,
+    },
+  ],
+  crossValidationScores: [
+    0.72004021, 0.7204647, 0.72287757, 0.71970509, 0.71785076, 0.72033065,
+    0.72010724, 0.71726988, 0.72015192, 0.72092763,
+  ],
+  meanCVAccuracy: 0.72,
+};
+
+const hyper_drinking_data = {
+  accuracy: 0.716,
+  precision: 0.715,
+  recall: 0.715,
+  f1Score: 0.715,
+  classificationReport: [
+    {
+      label: "0.0 (No)",
+      precision: 0.73,
+      recall: 0.73,
+      f1Score: 0.73,
+      support: 100976,
+    },
+    {
+      label: "1.0 (Yes)",
+      precision: 0.7,
+      recall: 0.7,
+      f1Score: 0.7,
+      support: 90853,
+    },
+  ],
+  crossValidationScores: [
+    0.71423146, 0.71713584, 0.71456658, 0.71416443, 0.71525916, 0.71394102,
+    0.71251117, 0.71389634, 0.71134942, 0.71353247,
+  ],
+  meanCVAccuracy: 0.714,
 };
 ---
 
@@ -194,6 +257,132 @@ const drinking_status_data = {
       <img src="/data-mining/imgs/model/smoking_status.png" alt="" />
     </div>
 
+    <h5 class="font-bold mt-8">Drinking Status</h5>
+    <p class="mt-2">The classificacion report returned these results:</p>
+    <ResultsCard data={drinking_status_data} />
+
+    <p class="mt-4">Here is the confusion matrix:</p>
+    <div class="flex justify-center w-full">
+      <img src="/data-mining/imgs/model/drinking_status.png" alt="" />
+    </div>
+  </div>
+
+  <div class="mt-8 mb-3">
+    <h3 class="font-bold text-2xl">Hyperparameter Tuning</h3>
+
+    <p class="mt-2">
+      We implemented hyperparameter tuning to optimize our model's performance
+      by finding the best combination of hyperparameters, which helps improve
+      accuracy, reduce overfitting, and ensure that the model generalizes well
+      to unseen data.
+    </p>
+
+    <Code
+      command=`def tuning(df, target_col, n_iter=20):
+    """
+    Train a Random Forest model with hyperparameter tuning using a subset of data.
+
+    Parameters:
+    -----------
+    df : pandas.DataFrame
+        Input dataframe containing features and target
+    target_col : str
+        Name of the target column
+    n_iter : int, optional
+        Number of parameter combinations to try in random search
+
+    Returns:
+    --------
+    dict
+        Dictionary containing the best parameters
+    """
+
+    # Separate features and target
+    list_of_columns = df.columns.tolist()
+    list_of_columns.remove(target_col)
+    feature_cols = list_of_columns
+
+    # Use a 30% sample of the df for tuning
+    df_sample = df.sample(frac=0.4, random_state=42)
+
+    X = df_sample[feature_cols]
+    y = df_sample[target_col]
+
+    # Split data for training the hyperparameter tuning model
+    X_train, _, y_train, _ = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)
+
+    # Parameter grid for Random Forest
+    params = {
+    'n_estimators': [100, 200, 300],
+    'max_depth': [10, 20, 30, 40, None],
+    'min_samples_split': [2, 5, 10],
+    'min_samples_leaf': [1, 2, 4],
+    'max_features': ['sqrt', 'log2', None],
+    'bootstrap': [True, False],
+    'class_weight': ['balanced', 'balanced_subsample', None]
+}
+
+    # Initialize Random Forest
+    rf = RandomForestClassifier(random_state=42, n_jobs=-1)
+
+    # Setup cross-validation
+    skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+
+    # Initialize RandomizedSearchCV
+    random_search = RandomizedSearchCV(
+        estimator=rf,
+        param_distributions=params,
+        n_iter=n_iter,
+        scoring='accuracy',  # Can adjust scoring if desired
+        n_jobs=-1,
+        cv=skf.split(X_train, y_train),
+        verbose=1,
+        random_state=42
+    )
+
+    # Start timing and fit
+    print("Starting parameter search...")
+    start_time = timer()
+    random_search.fit(X_train, y_train)
+    timer(start_time)
+
+    # Return only the best parameters
+    return {
+        'best_params': random_search.best_params_
+    }
+`
+    />
+
+    <p class="mt-4">Tuning both smoking and drinking:</p>
+
+    <h4 class="font-bold mt-8 text-xl">Smoking status after hypertuning</h4>
+
+    <Code
+      command="best_params_smoking = tuning(df_smoking_important, target_col='SMK_stat_type_cd')"
+      output=`
+Time taken: 0 hours 19 minutes and 23.08 seconds.
+
+{'best_params': {'n_estimators': 300,
+  'min_samples_split': 5,
+  'min_samples_leaf': 4,
+  'max_features': 'log2',
+  'max_depth': 10,
+  'class_weight': None,
+  'bootstrap': True}}`
+    />
+
+    <p class="mt-4">
+      Using these parameters on the training we got these results:
+    </p>
+
+    <ResultsCard data={hyper_smoking_data} />
+
+    <p class="mt-4">Here is the confusion matrix:</p>
+
+    <div class="flex justify-center w-full">
+      <img src="/data-mining/imgs/model/hyper_smoking_status.png" alt="" />
+    </div>
+
     <p class="mt-4">
       There are features that are driving the Random Forest model's predictions:
     </p>
@@ -204,13 +393,92 @@ const drinking_status_data = {
       />
     </div>
 
-    <h5 class="font-bold mt-8">Drinking Status</h5>
-    <p class="mt-2">The classificacion report returned these results:</p>
-    <ResultsCard data={drinking_status_data} />
+    <h5 class="text-lg font-semibold mb-4">Feature Importance</h5>
+    <p class="mb-2">
+      The most important features identified for predicting smoking status are:
+    </p>
+    <ul class="list-disc list-inside mb-4">
+      <li>Sex</li>
+      <li>Height</li>
+      <li>Hemoglobin</li>
+      <li>Weight</li>
+      <li>Gamma-GTP</li>
+      <li>Serum Creatinine</li>
+      <li>Age</li>
+    </ul>
+    <p class="mb-4">
+      These features play a significant role in the model's decision-making
+      process, indicating that biological and demographic factors are crucial in
+      assessing smoking status.
+    </p>
+
+    <h5 class="text-lg font-semibold mb-4">Insights and Discrepancies</h5>
+    <p class="mb-2">
+      The model achieved an overall accuracy of 72.1%, which is indicative of a
+      decent performance in classifying smoking status. However, the precision
+      and recall metrics reveal some important insights:
+    </p>
+    <ul class="list-disc list-inside mb-4">
+      <li>
+        <strong>Class Imbalance:</strong> The model performs significantly better
+        for the first class (smoking status 1.0) with a precision of 0.84 and a recall
+        of 0.86. This suggests that the model is effective in identifying non-smokers.
+        However, the lower precision (0.45) and recall (0.36) for the second class
+        (status 2.0) indicate that it struggles to accurately classify occasional
+        smokers. The performance for the third class (status 3.0) is slightly better
+        but still lacks robustness (precision: 0.49, recall: 0.51).
+      </li>
+      <li>
+        <strong>F1-Score Analysis:</strong> The F1-scores highlight the trade-offs
+        between precision and recall for different classes. The first class achieves
+        an F1-score of 0.85, while the second and third classes only achieve 0.40
+        and 0.50, respectively. This suggests that while the model is reliable for
+        the majority class, it is not performing well for the minority classes.
+      </li>
+      <li>
+        <strong>Cross-Validation Consistency:</strong> The mean cross-validation
+        accuracy of 72.0% corroborates the overall accuracy, indicating that the
+        model's performance is consistent across different subsets of the data. However,
+        the variability in the scores suggests there might be fluctuations in performance
+        depending on the specific data split used.
+      </li>
+    </ul>
+    <p>
+      In summary, while the smoking status classification model shows promise,
+      particularly in identifying non-smokers, there are significant challenges
+      in accurately classifying occasional and heavy smokers. Addressing class
+      imbalance, perhaps through techniques like oversampling, undersampling, or
+      model adjustments, could help improve the model's performance across all
+      classes.
+    </p>
+
+    <h4 class="font-bold mt-8 text-xl">Drinking status after hypertuning</h4>
+
+    <Code
+      command="best_params_drinking = tuning(df_drinking_important, target_col='DRK_YN')"
+      output=`
+
+      Time taken: 0 hours 18 minutes and 35.05 seconds.
+
+      {'best_params': {'n_estimators': 300,
+        'min_samples_split': 5,
+        'min_samples_leaf': 4,
+        'max_features': 'log2',
+        'max_depth': None,
+        'class_weight': None,
+        'bootstrap': True}}`
+    />
+
+    <p class="mt-4">
+      Using these parameters on the training we got these results:
+    </p>
+
+    <ResultsCard data={hyper_drinking_data} />
 
     <p class="mt-4">Here is the confusion matrix:</p>
+
     <div class="flex justify-center w-full">
-      <img src="/data-mining/imgs/model/drinking_status.png" alt="" />
+      <img src="/data-mining/imgs/model/hyper_drinking_status.png" alt="" />
     </div>
 
     <p class="mt-4">
@@ -222,5 +490,69 @@ const drinking_status_data = {
         alt=""
       />
     </div>
+
+    <h5 class="text-lg font-semibold mb-4">Feature Importance</h5>
+    <p class="mb-2">
+      The most important features identified for predicting drinking status are:
+    </p>
+    <ul class="list-disc list-inside mb-4">
+      <li>Gamma-GTP</li>
+      <li>Age</li>
+      <li>Hemoglobin</li>
+      <li>HDL Cholesterol</li>
+      <li>Triglycerides</li>
+      <li>Height</li>
+      <li>LDL Cholesterol</li>
+    </ul>
+    <p class="mb-4">
+      These features play a significant role in the model's decision-making
+      process, suggesting that biological and lifestyle factors are crucial in
+      assessing drinking status.
+    </p>
+
+    <h5 class="text-lg font-semibold mb-4">Insights and Discrepancies</h5>
+    <p class="mb-2">
+      The model achieved an overall accuracy of 71.2%, indicating a solid
+      performance in classifying drinking status. The metrics reveal several key
+      insights:
+    </p>
+    <ul class="list-disc list-inside mb-4">
+      <li>
+        <strong>Balanced Performance:</strong> The precision, recall, and F1-scores
+        are all approximately equal across both classes, reflecting a balanced performance
+        between non-drinkers (0.0) and drinkers (1.0). Specifically, the model shows
+        a precision of 0.72 and recall of 0.74 for non-drinkers, while for drinkers,
+        the precision is 0.70 and recall is 0.69. This suggests that the model is
+        fairly reliable for both categories.
+      </li>
+      <li>
+        <strong>F1-Score Consistency:</strong> The F1-scores are also close to each
+        other, with 0.73 for non-drinkers and 0.69 for drinkers. This consistency
+        indicates that the model maintains a good balance between false positives
+        and false negatives across both classes.
+      </li>
+      <li>
+        <strong>Cross-Validation Results:</strong> The mean cross-validation accuracy
+        of 71.0% aligns closely with the overall accuracy, suggesting that the model’s
+        performance is stable across different subsets of the data. The slight fluctuations
+        in individual cross-validation scores (ranging from 0.706 to 0.712) indicate
+        a reliable but slightly sensitive model, potentially influenced by the distribution
+        of classes in each fold.
+      </li>
+      <li>
+        <strong>Class Support:</strong> The support for each class indicates that
+        the dataset has a higher number of non-drinkers (100,976) compared to drinkers
+        (90,853). This could suggest a potential class imbalance issue that may affect
+        the model's performance in real-world applications, although the metrics
+        do not currently indicate severe bias.
+      </li>
+    </ul>
+    <p>
+      In conclusion, the drinking status classification model demonstrates solid
+      performance, especially in distinguishing between non-drinkers and
+      drinkers. However, continued monitoring and possibly addressing any latent
+      class imbalance through data augmentation or model tuning could further
+      enhance the model's robustness and predictive capability.
+    </p>
   </div>
 </section>
