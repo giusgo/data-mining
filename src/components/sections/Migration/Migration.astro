@@ -1,0 +1,149 @@
+---
+import { Calendar } from "lucide-react";
+---
+
+<section id="migration" class="container max-w-5xl px-1 mt-14 mb-5">
+  <a href="#migration"
+    ><div class="flex items-center gap-3 group cursor-pointer">
+      <h2 class="font-bold text-4xl">Data Migration to Big Query</h2><span
+        class="font-bold text-4xl hidden group-hover:block text-gray-400"
+        >#</span
+      >
+    </div></a
+  >
+  <div class="flex gap-2 mt-1 text-gray-500">
+    <Calendar />
+    <p class="italic">Oct 18, 2024</p>
+  </div>
+
+  <div class="mt-8 mb-3">
+    <h3 class="font-bold text-2xl">Migration Plan</h3>
+    <p class="mt-5">
+      After completing the data cleaning process and obtaining a clean dataset,
+      the migration of the data to BigQuery was carried out. Before performing
+      the migration, the following steps were taken:
+    </p>
+    <ul class="list-disc list-inside mt-4">
+      <li>
+        <p class="font-bold inline-block">
+          Transformation of Categorical Columns:
+        </p>
+        <ul class="list-disc list-inside ml-10">
+          <li>
+            <p class="inline-block">
+              <span class="font-bold">SMK_stat_type_cd</span>: Converted to
+              integer (int8).
+            </p>
+          </li>
+          <li>
+            <p class="inline-block">
+              <span class="font-bold">sex</span> and <span class="font-bold"
+                >DRK_YN</span
+              >: Converted to text (string).
+            </p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p class="font-bold inline-block">Encoding of Categorical Columns:</p>
+        <ul class="list-disc list-inside ml-10">
+          <li>
+            A label encoder was applied to transform the sex column, where
+            "Male" was converted to 1 and "Female" to 0. Similarly, the DRK_YN
+            column was transformed, assigning the value 1 for "Y" and 0 for "N".
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p class="font-bold inline-block">
+          Verification of Numeric Column Formats:
+        </p>
+        <ul class="list-disc list-inside ml-10">
+          <li>
+            It was checked that the numeric columns were correctly formatted as
+            int64 or float64.
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p class="font-bold inline-block">Loading Strategy:</p>
+        <ul class="list-disc list-inside ml-10">
+          <li>
+            The <code>pandas_gbq.to_gbq</code> function was used to perform the migration
+            in a single operation, utilizing the option <code
+              >if_exists='replace'</code
+            > to replace the table if it already existed.
+          </li>
+          <li>
+            The migration was carried out using credentials from a service
+            account with write permissions in BigQuery.
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3 class="font-bold text-2xl mt-8">Execution of the Migration Process</h3>
+    <ul class="list-disc list-inside mt-4">
+      <li>
+        <p class="font-bold inline-block">Environment Setup:</p>
+        <ul class="list-disc list-inside ml-10">
+          <li>
+            Credentials were configured using the JSON file of the service
+            account to establish the connection with BigQuery.
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p class="font-bold inline-block">Data Upload:</p>
+        <ul class="list-disc list-inside ml-10">
+          <li>
+            The <code>pandas_gbq.to_gbq()</code> function was employed to load the
+            dataset from pandas to BigQuery.
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p class="font-bold inline-block">Verification of the Load:</p>
+        <ul class="list-disc list-inside ml-10">
+          <li>
+            Once the load was completed, the correct migration was verified
+            through simple SQL queries in BigQuery.
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3 class="font-bold text-2xl mt-8">
+      Challenges Encountered and Solutions
+    </h3>
+    <ul class="list-disc list-inside mt-4">
+      <li>
+        <p class="font-bold inline-block">403 Access Denied:</p>
+        <ul class="list-disc list-inside ml-10">
+          <li>
+            <strong>Problem:</strong> The service account did not have the necessary
+            permissions to create datasets.
+          </li>
+          <li>
+            <strong>Solution:</strong> The roles BigQuery Data Editor and BigQuery
+            Admin were assigned to the service account from the Google Cloud Console.
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p class="font-bold inline-block">Incorrect Table Name Format:</p>
+        <ul class="list-disc list-inside ml-10">
+          <li>
+            <strong>Problem:</strong> Initially, an incorrect table name format was
+            used.
+          </li>
+          <li>
+            <strong>Solution:</strong> The format was adjusted to <code
+              >dataset.table</code
+            >, removing the project reference from the table name.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
